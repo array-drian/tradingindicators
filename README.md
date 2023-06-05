@@ -8,4 +8,4 @@
 ## Import package to your project
     from tradingindicators import indicators
 ## Examples
-> Examples can be found inside the `/examples` directory.
+> Examples can be found on Github inside the `/examples` directory.
