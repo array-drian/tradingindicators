@@ -21,8 +21,7 @@ def rsi(prices, period):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the RSI values calculated.
+    rsi (numpy.ndarray) : Numpy array of type float containing the RSI values calculated.
     """
     delta = np.diff(prices)
     gain = delta.copy()
@@ -68,8 +67,7 @@ def ma(prices, period):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the MA values calculated.
+    ma (numpy.ndarray) : Numpy array of type float containing the MA values calculated.
     """
     ma = np.convolve(prices, np.ones(period), mode='valid') / period
 
@@ -95,8 +93,7 @@ def smma(prices, period):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the SMA values calculated.
+    smma (numpy.ndarray) : Numpy array of type float containing the SMA values calculated.
     """
     smma = np.zeros(len(prices))
     smma[period - 1] = ma(prices, period)[-1]
@@ -129,8 +126,7 @@ def ema(prices, period):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the EMA values calculated.
+    ema (numpy.ndarray) : Numpy array of type float containing the EMA values calculated.
     """
     ema = np.zeros(len(prices))
     ema[period-1] = ma(prices, period)[-1]
@@ -156,7 +152,7 @@ def macd(prices, fast_period, slow_period, signal_period):
     
     Parameters
     ----------
-    prices : numpy.ndarray
+    prices : numpy.ndarray  
         Numpy array of type float containing an assets pricehistory.
     fast_period : int
         Number of timeperiods used for the fast length calculation.
@@ -167,12 +163,9 @@ def macd(prices, fast_period, slow_period, signal_period):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the histogram values calculated.
-    numpy.ndarray
-        Numpy array of type float containing the MACD values calculated.
-    numpy.ndarray
-        Numpy array of type float containing the signal values calculated.
+    hist (numpy.ndarray) : Numpy array of type float containing the histogram values calculated.
+    macd (numpy.ndarray) : Numpy array of type float containing the MACD values calculated.
+    signal (numpy.ndarray) : Numpy array of type float containing the signal values calculated.
     """
     fast = ema(prices, fast_period)
     slow = ema(prices, slow_period)
@@ -209,12 +202,9 @@ def bollinger_bands(prices, period, standard_deviation):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the middle BB values calculated.
-    numpy.ndarray
-        Numpy array of type float containing the upper BB values calculated.
-    numpy.ndarray
-        Numpy array of type float containing the lower BB values calculated.
+    middle (numpy.ndarray) : Numpy array of type float containing the middle BB values calculated.
+    upper (numpy.ndarray) : Numpy array of type float containing the upper BB values calculated.
+    lower (numpy.ndarray) : Numpy array of type float containing the lower BB values calculated.
     """
     middle = ma(prices, period)
 
@@ -255,8 +245,7 @@ def fibonacci_retracement(high, low, levels, uptrend):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the retracement level values calculated.
+    retracement_levels (numpy.ndarray) : Numpy array of type float containing the retracement level values calculated.
     """
     diff = high - low
     retracement_levels = np.zeros(len(levels))
@@ -269,7 +258,7 @@ def fibonacci_retracement(high, low, levels, uptrend):
 
     return retracement_levels
 
-def fibonacci_extensions(high, low, levels, uptrend):
+def fibonacci_extension(high, low, levels, uptrend):
     """
     Calculate the Fibonacci Extension level values.
 
@@ -294,8 +283,7 @@ def fibonacci_extensions(high, low, levels, uptrend):
 
     Returns
     -------
-    numpy.ndarray
-        Numpy array of type float containing the extension level values calculated.
+    extension_levels (numpy.ndarray) : Numpy array of type float containing the extension level values calculated.
     """
     diff = high - low
     extension_levels = np.zeros(len(levels))
